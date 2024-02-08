@@ -1,4 +1,5 @@
 import PyPDF2
+import sys
 
 def add_blank_pages(input_pdf_path, output_pdf_path):
     # Create a PDF reader object
@@ -20,5 +21,12 @@ def add_blank_pages(input_pdf_path, output_pdf_path):
     with open(output_pdf_path, 'wb') as output_pdf:
         pdf_writer.write(output_pdf)
 
-# Replace 'input.pdf' and 'output.pdf' with the paths to your files
-add_blank_pages('input.pdf', 'output.pdf')
+if __name__ == "__main__":
+    # Check if the input PDF path is provided as a command line argument
+    if len(sys.argv) < 2:
+        print("Usage: python add_blank_pages.py input.pdf")
+        sys.exit(1)
+
+    pdf_path = sys.argv[1]
+
+    add_blank_pages(pdf_path, pdf_path)
